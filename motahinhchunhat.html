@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas
+      id="canvas"
+      width="600px"
+      height="300px"
+      style="border: 1px solid #d3d3d3"
+    ></canvas>
+    <h3 id="info"></h3>
+    <button onclick="create()">Create</button>
+    <button onclick="info()">Info</button>
+    <button onclick="drawRect()">Draw</button>
+  </body>
+  <script>
+    class Rectangle {
+      width;
+      height;
+
+      constructor(width, height) {
+        this.width = width;
+        this.height = height;
+      }
+      setWitdh(width) {
+        this.width = width;
+      }
+      setHeight(height) {
+        this.height = height;
+      }
+      getArea() {
+        return this.width * this.height;
+      }
+      getPerimeter() {
+        return (this.width + this.height) * 2;
+      }
+      draw() {
+        let ctx = document.getElementById("canvas").getContext("2d");
+        ctx.clearRect(0, 0, 600, 300);
+        ctx.fillStyle = "red";
+        ctx.fillRect(200, 100, this.width, this.height);
+        ctx.fill();
+      }
+    }
+    let rectangle;
+    function create() {
+      let width = +prompt("Nhập chiều rộng: ");
+      let height = +prompt("Nhập chiều dài: ");
+      rectangle = new Rectangle(width, height);
+    }
+    function info() {
+      document.getElementById("info").innerHTML =
+        "Chu vi là " +
+        rectangle.getPerimeter() +
+        " . Diện tích là " +
+        rectangle.getArea();
+    }
+    function drawRect() {
+      rectangle.draw();
+    }
+  </script>
+</html>
