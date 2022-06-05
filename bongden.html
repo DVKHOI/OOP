@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="bat()">Bat Bong Den</button>
+    <button onclick="tat()">Tat Bong Den</button>
+  </body>
+  <script>
+    class ElectricLamp {
+      status;
+      constructor(status) {
+        this.status = status;
+      }
+      turnOn() {
+        this.status = true;
+        console.log("Den sang");
+      }
+      turnOff() {
+        this.status = false;
+        console.log("Den tat");
+      }
+    }
+    class SwitchButton {
+      status;
+      lamp;
+      constructor(status) {
+        this.status = status;
+      }
+      connectToLamp(lamp) {
+        this.lamp = lamp;
+      }
+      switchOn() {
+        this.status = true;
+        if (this.lamp !== "undefined") {
+          this.lamp.turnOn();
+        }
+      }
+      switchOff() {
+        this.status = false;
+        if (this.lamp !== "undefined") {
+          this.lamp.turnOff();
+        }
+      }
+    }
+    let bongden = new ElectricLamp();
+    let congtac = new SwitchButton();
+    console.log(congtac);
+    congtac.connectToLamp(bongden);
+    console.log(congtac);
+    function bat() {
+      congtac.switchOn();
+    }
+    function tat() {
+      congtac.switchOff();
+    }
+  </script>
+</html>
